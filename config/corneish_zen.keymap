@@ -10,15 +10,36 @@
 };
 
 / {
+        behaviors {
+            hm: homerow_mods {
+                compatible = "zmk,behavior-hold-tap";
+                label = "HOMEROW_MODS";
+                #binding-cells = <2>;
+                tapping-term-ms = <200>;
+                quick_tap_ms = <0>;
+                flavor = "tap-preferred";
+                bindings = <&kp>, <&kp>;
+            };
+            bl: layertap {
+                compatible = "zmk,behavior-hold-tap";
+                label = "LAYERTAP";
+                #binding-cells = <2>;
+                tapping-term-ms = <150>;
+                quick_tap_ms = <0>;
+                flavor = "tap-preferred";
+                bindings = <&lt>, <&kp>;
+            };
+        };
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
                         label = "QWERTY";
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp ESC   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp RET
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+   &kp TAB    &mt N1 Q     &mt N2 W         &mt N3 F     &mt N4 P         &mt N5 B      &mt N6 J   &mt N7 L         &mt N8 U     &mt N9 Y      &mt N0 SEMI    &kp BSPC
+   &kp ESC    &hm LSHFT A  &hm LALT R       &hm LCTRL S  &hm LCMD T       &kp G         &kp M      &hm RCMD N       &hm RCTRL E  &hm RALT I    &hm RSHFT O    &kp ENTER
+   &kp TAB    &kp Z        &kp X            &kp C        &kp D            &kp V         &kp K      &kp H            &kp COMMA    &kp DOT       &kp FSLH       &kp DEL
+
                   &kp LCTRL &mo 1 &mt LGUI SPACE   &kp SPACE &mo 2 &kp RALT
                         >;
                 };
